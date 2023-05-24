@@ -4,28 +4,33 @@
 
 In this section, describe the analysis you completed for the machine learning models used in this Challenge. This might include:
 
-* Explain the purpose of the analysis.
-* Explain what financial information the data was on, and what you needed to predict.
-* Provide basic information about the variables you were trying to predict (e.g., `value_counts`).
-* Describe the stages of the machine learning process you went through as part of this analysis.
-* Briefly touch on any methods you used (e.g., `LogisticRegression`, or any resampling method).
+* Purpose of the analysis:  Test two logistic regression models to determine accuracy, actual values (true negatives, false negatives, false positives and true positives), percision and recall. 
+* Financial information included in the data was loan size, interest rate, borrower income, debt to income ratio, number of accounts, derogatory marks, total debt and loan status.  Loan status was dropped from the training model to decrease bias that would be introduced with inclusion.
+* Overall the data set included 75,036 occurances of healthy loans and 2,500 of high-risk loans.  The oversampling model harmonized both types of loans to 56,271 occurances. 
+* Through a multistep process data was split into training and testing datasets, models were fit and then a prediction model was run.  After model was run the preformance was evaluated for accuracy, actual values, percision and recall. An additional step was needed for the oversampling model. 
+* The logistic regression evaluated the relationship between health and high-risk loans and made predictions after a simple model was preformance was evaluated a oversampleing method was used to correct for the bias created by having more healthy loans in the dataset than high-risk loans. Oversampling preseved the data present in the healthy loan category and randomly duplicated data from the high-risk loan category.
 
 ## Results
 
 Using bulleted lists, describe the balanced accuracy scores and the precision and recall scores of all machine learning models.
 
 * Machine Learning Model 1:
-  * Description of Model 1 Accuracy, Precision, and Recall scores.
+  * Simple Model 1:
+  *  Accuracy: 95%
+  *  Precision: 99% (Healthy Loan), 91% (High-risk Loan)
+  *  Recall: 100% (Healthy Loan), 85% (High-risk Loan) 
 
 
 
 * Machine Learning Model 2:
-  * Description of Model 2 Accuracy, Precision, and Recall scores.
+  * Oversampling Model 2:
+  *  Accuracy: 99%
+  *  Precision: 99% (Healthy Loan), 99% (High-risk Loan)
+  *  Recall: 100% (Healthy Loan), 84% (High-risk Loan) 
 
 ## Summary
+* Overall the simple model had 95 percent accuracy however recall for high-risk loans is 91 percent (99% for healthy loans). This leaves more risk in the model for false negatives than is optimal and will over predict healthy loans in cases of high-risk loans. 
+* Overall the oversampling model predicts with more than 99 percent accuracy. The oversampled data increases the recall to 99 percent while maintaining a similar percision score. This therefore reduces the likelyhood of predicting false negatives, that is classifing high-risk loans as healthy lones.
+* From the prespective of the lender it is more important to predict false negatives, in other words when the model gives the wrong prediction of the loans that are risky. This error will lead to bad loans being identified as healthy. 
 
-Summarize the results of the machine learning models, and include a recommendation on the model to use, if any. For example:
-* Which one seems to perform best? How do you know it performs best?
-* Does performance depend on the problem we are trying to solve? (For example, is it more important to predict the `1`'s, or predict the `0`'s? )
-
-If you do not recommend any of the models, please justify your reasoning.
+The recommended model for this dataset is the oversampling method.  This increase the likelyhood of identifying risky loans. 
